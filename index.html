@@ -21,7 +21,19 @@
                 font-family: 'Dancing script', cursive;
                 text-align: center;
                 margin-top: 50px;
+                cursor: pointer;
             }
+            #bloque-texto{
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 1s ease;
+            }
+
+            #bloque-texto.mostrar{
+                opacity:1;
+                transform: translateY(0);
+            }
+
             #contador-container {
             font-size: 2.0rem;
             font-weight: bold;
@@ -75,6 +87,9 @@
            <h1>Nuestra historia empezo hace...</h1>
             <div id="contador"></div>
         </div>
+        <div id="bloque-texto">
+            <h2>Definitavamente cambiaste mi vida ese 16 de abril(17 para vos :p)</h2>
+        </div>
 
         <script>
             const Fechainicio= new Date(2021,3,16,19,45,0)
@@ -127,6 +142,12 @@
             if('serviceWorker' in navigator){
                 navigator.serviceWorker.register('sw.js');
             }
+        </script>
+
+        <script>
+            const texto= document.getElementById('bloque-texto');
+
+            document.addEventListener('click',function(){ texto.classList.add('mostrar');});
         </script>
 
     </body>
