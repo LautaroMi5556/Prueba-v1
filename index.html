@@ -10,41 +10,63 @@
         <title>A + L</title>
         <style>
             #contador{
-                font-size: 2.0rem;
+                font-size: 1.8rem;
                 font-weight: bold;
+                text-decoration: none;
             }
             body{
                 margin: 0;
                 padding: 0;
                 min-height: 100vh;
                 background: linear-gradient(to bottom,#ffd6e0,#ffb3c1,#ff8fab,#c9184a);                
-                font-family: 'Dancing script', cursive;
+                font-family: 'Dancing Script';
+                font-weight: bold;
                 text-align: center;
                 margin-top: 50px;
                 cursor: pointer;
             }
-            #bloque-texto{
-                opacity: 0;
-                transform: translateY(20px);
-                transition: all 1s ease;
-                font-family: Arial, Helvetica, sans-serif;
+            #bloque-texto-1{
+                margin-left: 10px;
+                font-family: 'Dancing Script', cursive;
                 font-weight: bold;
-                font-size: 1.7rem;
+                text-align: left;
+                font-size: 1.3rem;
             }
 
-            #bloque-texto.mostrar{
-                opacity:1;
-                transform: translateY(0);
+            #bloque-texto-2{
+                margin-left: 10px;
+                font-family: 'Dancing Script', cursive;
+                font-weight: bold;
+                text-align: left;
+                font-size: 1.3rem;
+            }
+
+            #bloque-texto-3{
+                margin-left: 10px;
+                font-family: 'Dancing Script', cursive;
+                font-weight: bold;
+                text-align: left;
+                font-size: 1.3rem;
+            }
+            #bloque-texto-4{
+                margin-left: 120px;
+                font-family: 'Dancing Script', cursive;
+                font-weight: bold;
+                font-size: 1.3rem;
             }
 
             #contador-container {
             font-size: 2.0rem;
             font-weight: bold;
+            font-family: 'Dancing Script';
             position: relative;
             bottom: 20px;
             left: 20px;
             text-align: center;
-        }
+             }
+            #contador-container h1 {
+            text-decoration: underline;
+            }
         .heart {
              position: fixed;
              top: -20px;
@@ -82,16 +104,83 @@
             }
         }
 
+        .bloque-texto{
+            display: none;
+            max-width: 80%;
+            padding: 20px;
+            animation: aparecer 1s ease;
+        }
+
+        .bloque-texto.activo{
+            display: block;
+        }
+        .bloque-final {
+            text-align: center;
+            margin: 0 auto;
+            min-height: 70vh;
+        }
+
+        .bloque-final img {
+            display: block;
+            margin: 20px auto;
+            max-width: 80%;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        @keyframes aparecer {
+            from{opacity:0;
+            transform:translateY(20px);}
+            to{opacity:1;
+            transform: translateY(0);}
+        }
         </style>
     </head>
 
     <body>
+
+        <audio id="musica" loop hidden>
+            <source src="Cancion.mp3" type="audio/mpeg">
+        </audio>
+
+        <button onclick="document.getElementById('musica').play()"
+        style="position:absolute;
+        top: 20px;
+        right: 20px;
+        background: #ff4d6d;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        z-index: 100;">
+            Nuestra canción
+        </button>
         <div id="contador-container">
            <h1>Nuestra historia empezo hace...</h1>
             <div id="contador"></div>
         </div>
-        <div id="bloque-texto">
-            <h2>Definitavamente cambiaste mi vida ese 16 de abril(17 para vos :p)</h2>
+        <div id="bloque-texto-1" class="bloque-texto activo">
+            <h2>dfiaugfabefkabfhoshgwo8hgirejwodijqpowdjwopdkqdqjdq<br>
+                eiofqqijnqñpojwpoidqjdpoqwkdq<br>
+                kqwndoiqjwdpqjdopqkdq
+            </h2>
+        </div>
+
+        <div id="bloque-texto-2" class="bloque-texto">
+            <h1>Hola soy el texto 2</h1>
+            <p>click para continuar</p>
+        </div>
+
+        <div id="bloque-texto-3" class="bloque-texto">
+            <h1>ultimo bloque</h1>
+            <p>click</p>
+        </div>
+
+        <div id="bloque-texto-4" class="bloque-texto bloque-final">
+            <img src="foto.jpg" alt="Nosotros">
+            <h1>Bloque final</h1>
+            <p>lol xd</p>
         </div>
 
         <script>
@@ -148,9 +237,19 @@
         </script>
 
         <script>
-            const texto= document.getElementById('bloque-texto');
+            const bloques=document.querySelectorAll('.bloque-texto');
+            let indiceActual = 0;
 
-            document.addEventListener('click',function(){ texto.classList.add('mostrar');});
+            document.addEventListener('click', function (e) {
+              if (e.target.closest('button')) return;
+
+              if (indiceActual < bloques.length - 1) {
+                bloques[indiceActual].classList.remove('activo');
+                 indiceActual++;
+                 bloques[indiceActual].classList.add('activo');
+             }
+            });
+
         </script>
 
     </body>
